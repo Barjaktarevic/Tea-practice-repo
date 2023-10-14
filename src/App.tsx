@@ -14,6 +14,7 @@ function App() {
     try {
       const response = await http.get<IRecipeGetResponse>("/recipes");
       console.log(response);
+      console.log("git test!");
       setRecipes(response.data.recipes);
     } catch (error) {
       console.log(error);
