@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IRecipeAdd } from "../data/IRecipe";
 import { http } from "../data/http";
+import { toast } from "react-toastify";
 
 interface IProps {
   toggleRefetch: () => void;
@@ -66,6 +67,7 @@ export default function RecipeForm(props: IProps) {
         tags: tags.split(","),
       };
       await http.post("/recipes", recipeAdd);
+      toast.success("Recipe successfully added");
 
       setName("");
       setDescription("");
@@ -74,6 +76,7 @@ export default function RecipeForm(props: IProps) {
       setTime("");
       props.toggleRefetch();
     } catch (error) {
+      toast.error("Ooops! A problem occurred while attempting to add recipe.");
       console.log(error);
     }
   }
