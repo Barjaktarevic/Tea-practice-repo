@@ -1,14 +1,20 @@
-// KOMPONENTA SE RE-RENDERA SAMO KAD SE STATE U USE STATEU PROMIJENI
-
-import Navbar from "./components/Navbar";
+import MainLayout from "./layouts/MainLayout";
+import AboutUs from "./pages/AboutUs";
 import Home from "./pages/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <div className="bg-slate-800 h-screen w-screen overflow-x-hidden">
-      <Navbar />
-      <Home />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
